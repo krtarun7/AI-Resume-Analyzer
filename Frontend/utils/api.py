@@ -1,6 +1,6 @@
 import requests
 
-BASE_URL = "https://ai-resume-analyzers.onrender.com"
+BASE_URL = "https://ai-resume-analyzers-rmug.onrender.com"
 
 TIMEOUT = 30
 

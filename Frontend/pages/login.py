@@ -29,9 +29,7 @@ def show_login():
     # Login Form
     # ----------------------------
 
-    email = st.text_input(
-        "Email"
-    )
+    email = st.text_input("Email")
 
     password = st.text_input(
         "Password",
@@ -40,38 +38,48 @@ def show_login():
 
     if st.button("Login", use_container_width=True):
 
-        if email == "" or password == "":
+        if not email or not password:
             st.error("Please enter email and password.")
 
         else:
 
-            response = login(
-                email,
-                password
-            )
+            try:
+                response = login(email, password)
 
-            if response.status_code == 200:
+                if response.status_code == 200:
 
-                data = response.json()
+                    try:
+                        data = response.json()
+                    except Exception:
+                        st.error("Backend returned an invalid JSON response.")
+                        st.code(response.text)
+                        st.stop()
 
-                st.session_state.logged_in = True
-                st.session_state.token = data["access_token"]
-                st.session_state.user_name = data["name"]
-                st.session_state.user_email = data["email"]
+                    st.session_state.logged_in = True
+                    st.session_state.token = data.get("access_token", "")
+                    st.session_state.user_name = data.get("name", "")
+                    st.session_state.user_email = data.get("email", "")
 
-                st.success("Login Successful!")
+                    st.success("Login Successful!")
+                    st.rerun()
 
-                st.rerun()
+                else:
 
-            else:
-                st.error(response.json()["detail"])
+                    try:
+                        error = response.json()
+                        st.error(error.get("detail", "Login failed"))
+                    except Exception:
+                        st.error(f"Request failed (HTTP {response.status_code})")
+                        st.code(response.text)
+
+            except Exception as e:
+                st.error(f"Unable to connect to backend.\n\n{e}")
 
     st.divider()
 
     col1, col2 = st.columns([1, 1])
 
     with col1:
-
         if st.button(
             "🔑 Forgot Password?",
             use_container_width=True

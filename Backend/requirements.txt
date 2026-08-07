@@ -5,7 +5,13 @@ pymysql
 python-multipart
 python-docx
 pdfplumber
+pymupdf
 streamlit
 plotly
 python-dotenv
 google-genai
+requests
+email-validator
+passlib[bcrypt]
+python-jose[cryptography]
+bcrypt

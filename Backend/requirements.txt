@@ -1,12 +1,11 @@
 fastapi
 uvicorn
 sqlalchemy
-pymysql
+psycopg2-binary
 python-multipart
 python-docx
 pdfplumber
 pymupdf
-streamlit
 plotly
 python-dotenv
 google-genai
@@ -15,3 +14,4 @@ email-validator
 passlib[bcrypt]
 python-jose[cryptography]
 bcrypt
+aiosmtplib

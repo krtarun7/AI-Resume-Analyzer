@@ -11,7 +11,7 @@ python-dotenv
 google-genai
 requests
 email-validator
-passlib[bcrypt]
+passlib[bcrypt]==1.7.4
 python-jose[cryptography]
-bcrypt
+bcrypt==4.0.1
 aiosmtplib

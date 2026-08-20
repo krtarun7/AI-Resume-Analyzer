@@ -1,77 +1,85 @@
-# 🤖 AI Resume Analyzer
+# 🤖 AI Resume Analyzer — Backend
 
-An AI-powered Resume Analyzer built using **FastAPI**, **Streamlit**, **Gemini AI**, and **SQLite** that evaluates resumes against job descriptions, calculates ATS scores, identifies missing skills, and provides AI-generated resume improvement suggestions.
+An AI-powered Resume Analyzer backend built using **FastAPI**, **PostgreSQL**, **Gemini AI**, and **SQLAlchemy**.
+
+The backend provides REST APIs for user authentication, email OTP verification, password management, resume analysis, ATS scoring, skill matching, AI-generated suggestions, and resume analysis history.
 
 ---
 
 ## 📌 Features
 
-- 🔐 User Authentication
-  - Sign Up
-  - Login
-  - Email OTP Verification
-  - Forgot Password
-  - Password Reset
+### 🔐 User Authentication
 
-- 📄 Resume Analysis
-  - Upload PDF Resume
-  - Paste Job Description
-  - Resume Parsing
-  - ATS Score Calculation
-  - Skill Matching
+- User Signup
+- Login
+- JWT Authentication
+- Email OTP Verification
+- Resend OTP
+- Forgot Password
+- Password Reset
+- Password Hashing
 
-- 🤖 AI Features
-  - Gemini AI Resume Suggestions
-  - Resume Improvement Tips
-  - ATS Optimization Recommendations
+### 📄 Resume Analysis
 
-- 📊 Dashboard
-  - Resume Analytics
-  - ATS Score Statistics
-  - Recent Resume History
-  - Charts & Metrics
+- Upload PDF Resume
+- Accept Job Description
+- Resume Parsing
+- ATS Score Calculation
+- Skill Matching
+- Missing Skill Detection
 
-- 📁 Resume History
-  - View Previous Analyses
-  - Delete Individual Records
-  - Clear History
+### 🤖 AI Features
 
-- 👤 User Profile
-  - User Information
-  - Resume Statistics
+- Gemini AI Resume Suggestions
+- Resume Improvement Recommendations
+- ATS Optimization Suggestions
+
+### 📊 Resume History
+
+- Store Resume Analysis Results
+- View Previous Analyses
+- Delete Individual Analysis
+- Clear Analysis History
+
+### 📧 Email Services
+
+- Signup OTP
+- Password Reset OTP
+- Email Verification
 
 ---
 
 # 🛠 Tech Stack
 
-## Frontend
-
-- Streamlit
-- Python
-- Plotly
-- HTML/CSS
-
-## Backend
+### Backend
 
 - FastAPI
+- Python
 - SQLAlchemy
-- SQLite
-- JWT Authentication
+- PostgreSQL
 - Pydantic
+- JWT Authentication
+- Passlib / Bcrypt
 
-## AI
+### AI
 
 - Google Gemini API
 
-## Resume Parsing
+### Resume Parsing
 
-- PyMuPDF (fitz)
+- PyMuPDF
+- pdfplumber
+- python-docx
+
+### Email
+
+- aiosmtplib
 
 ---
 
 # 📂 Project Structure
 
-```
+```text
 AI_Resume_Analyzer/
 
 ├── Backend/
@@ -79,227 +87,30 @@ AI_Resume_Analyzer/
 │   ├── app/
 │   │
 │   ├── api/
+│   │   ├── auth.py
+│   │   └── ...
+│   │
 │   ├── database/
+│   │   ├── database.py
+│   │   ├── crud.py
+│   │   ├── models.py
+│   │   └── ...
+│   │
 │   ├── services/
+│   │   ├── auth_service.py
+│   │   ├── email_service.py
+│   │   └── ...
+│   │
 │   ├── schemas.py
 │   ├── security.py
-│   │
+│   └── ...
+│
+├── Backend/
 │   ├── main.py
 │   ├── run.py
-│   └── requirements.txt
-│
-├── Frontend/
-│
-│   ├── assets/
-│   ├── components/
-│   ├── pages/
-│   ├── utils/
-│   ├── app.py
-│   └── requirements.txt
+│   ├── requirements.txt
+│   └── .env_example
 │
 ├── .gitignore
+├── LICENSE
 └── README.md
-```
-
----
-
-# 🚀 Installation
-
-## 1️⃣ Clone Repository
-
-```bash
-git clone https://github.com/YOUR_USERNAME/AI-Resume-Analyzer.git
-```
-
-```bash
-cd AI-Resume-Analyzer
-```
-
----
-
-## 2️⃣ Backend Setup
-
-```bash
-cd Backend
-```
-
-Create Virtual Environment
-
-```bash
-python -m venv .venv
-```
-
-Activate
-
-### Windows
-
-```bash
-.venv\Scripts\activate
-```
-
-### Install Packages
-
-```bash
-pip install -r requirements.txt
-```
-
-Create `.env`
-
-```env
-GEMINI_API_KEY=YOUR_API_KEY
-SECRET_KEY=YOUR_SECRET_KEY
-
-EMAIL=YOUR_EMAIL
-EMAIL_PASSWORD=YOUR_APP_PASSWORD
-```
-
-Run Backend
-
-```bash
-uvicorn main:app --reload
-```
-
-Backend runs on
-
-```
-http://127.0.0.1:8000
-```
-
----
-
-## 3️⃣ Frontend Setup
-
-```bash
-cd Frontend
-```
-
-Create Virtual Environment
-
-```bash
-python -m venv .venv
-```
-
-Activate
-
-```bash
-.venv\Scripts\activate
-```
-
-Install Packages
-
-```bash
-pip install -r requirements.txt
-```
-
-Run
-
-```bash
-streamlit run app.py
-```
-
-Frontend runs on
-
-```
-http://localhost:8501
-```
-
----
-
-# 📸 Screenshots
-
-## Login
-
-> Add Screenshot Here
-
----
-
-## Dashboard
-
-> Add Screenshot Here
-
----
-
-## Resume Analyzer
-
-> Add Screenshot Here
-
----
-
-## Analysis Result
-
-> Add Screenshot Here
-
----
-
-## History
-
-> Add Screenshot Here
-
----
-
-# 📈 Workflow
-
-```
-User Login
-      │
-      ▼
-Upload Resume
-      │
-      ▼
-Paste Job Description
-      │
-      ▼
-Resume Parsing
-      │
-      ▼
-ATS Score Calculation
-      │
-      ▼
-Skill Matching
-      │
-      ▼
-Gemini AI Suggestions
-      │
-      ▼
-Store Analysis
-      │
-      ▼
-Dashboard & History
-```
-
----
-
-# 📊 Future Improvements
-
-- Resume Ranking
-- Multi Resume Comparison
-- Cover Letter Generator
-- AI Interview Questions
-- Resume Templates
-- Export Analysis as PDF
-- Cloud Deployment
-- Admin Dashboard
-
----
-
-# 👨‍💻 Author
-
-**Tarun Kumar**
-
-GitHub:
-https://github.com/krtarun7
-
-LinkedIn:
-https://linkedin.com/in/krtarun7
-
----
-
-# 📄 License
-
-This project is licensed under the MIT License.
-
----
-
-# ⭐ Support
-
-If you like this project, please ⭐ star the repository on GitHub.

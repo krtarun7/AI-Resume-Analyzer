@@ -26,8 +26,6 @@ Backend/uploads/*
 # Logs
 *.log
 
-# Streamlit Cache
-.streamlit/
 
 # OS Files
 .DS_Store
